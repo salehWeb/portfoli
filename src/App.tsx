@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion'
+import Loader from './Tools/Loader';
+const Header = React.lazy(() => import('./components/Header'));
+const Footer = React.lazy(() => import('./components/Footer'));
+const Main = React.lazy(() => import('./pages/Main'));
+const Connect = React.lazy(() => import('./pages/Connect'));
+const Project = React.lazy(() => import('./pages/Project'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AnimatePresence>
+      <div className="w-full h-full min-h-[100vh]">
+        <React.Suspense fallback={<Loader />}>
+          <Header />
+        </React.Suspense>
+        <Routes>
+          <Route path='/' element={
+            <React.Suspense fallback={<Loader />}>
+              <Main />
+            </React.Suspense>
+          } />
+
+          <Route path='/project' element={
+            <React.Suspense fallback={<Loader />}>
+              <Project />
+            </React.Suspense>
+          } />
+
+          <Route path='/connect' element={
+            <React.Suspense fallback={<Loader />}>
+              <Connect />
+            </React.Suspense>
+          } />
+        </Routes>
+        <React.Suspense fallback={<Loader />}>
+          <Footer />
+        </React.Suspense>
+      </div>
+    </AnimatePresence>
   );
 }
 
