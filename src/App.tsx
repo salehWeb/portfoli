@@ -11,7 +11,7 @@ const Project = React.lazy(() => import('./pages/Project'));
 function App() {
   return (
     <AnimatePresence>
-      <div className="w-full h-full min-h-[100vh]">
+      <div className="w-full h-full min-h-[100vh] overflow-hidden">
         <React.Suspense fallback={<Loader />}>
           <Header />
         </React.Suspense>
