@@ -2,9 +2,10 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'class',
-  theme: {
-    extend: {},
+    theme: {
+      backgroundImage: {
+        'pack-train': "url('imgs/BG.svg')",
+      },
   },
   plugins: [],
 }
